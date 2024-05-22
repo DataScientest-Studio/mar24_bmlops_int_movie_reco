@@ -23,7 +23,10 @@ async def ping():
 
 # ---------------------------------------------
 # for the docker use
-df = pd.read_csv("/app/src/data/data/movie_matrix.csv")
+df = pd.read_csv("/app/src/data/data/processed/movie_matrix.csv")
+
+# # for unit testing 
+# df = pd.read_csv("./app/src/data/data/processed/movie_matrix.csv")
 #for the api use only
 # df = pd.read_csv("./app/src/data/data/processed/movie_matrix.csv")
 
@@ -144,14 +147,15 @@ async def show_data20(
     # Return the first five rows of the DataFrame as JSON
     return df.head(20).to_json(orient="records")
 
-
+# for unit testing change into 
+# "./app/models/model.pkl", "./app/src/data/data/processed/user_matrix.csv"
 
 @app.get("/predict")
 async def predict(
     credentials: HTTPBasicCredentials = Depends(authenticate_user),
     users_id: List[int] = Query(..., description="List of user IDs")
 ):
-    # authorize_user(credentials)
+    authorize_user(credentials)
     predictions = make_predictions(
         users_id, "/app/models/model.pkl", "/app/src/data/data/processed/user_matrix.csv"
     )

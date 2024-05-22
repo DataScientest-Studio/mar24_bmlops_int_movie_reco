@@ -10,9 +10,12 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - model_data:/app/models
-      - app_data:/app/src/data/data
-
+      - type: volume
+        source: model_data
+        target: /app/models
+      - type: volume
+        source: app_data
+        target: /app/src/data/data
 
 volumes:
   model_data:
