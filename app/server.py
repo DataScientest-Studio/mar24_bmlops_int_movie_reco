@@ -23,10 +23,10 @@ async def ping():
 
 # ---------------------------------------------
 # for the docker use
-df = pd.read_csv("/app/src/data/data/processed/movie_matrix.csv")
+# df = pd.read_csv("/app/src/data/data/processed/movie_matrix.csv")
 
 # # for unit testing 
-# df = pd.read_csv("./app/src/data/data/processed/movie_matrix.csv")
+df = pd.read_csv("./app/src/data/data/processed/movie_matrix.csv")
 #for the api use only
 # df = pd.read_csv("./app/src/data/data/processed/movie_matrix.csv")
 
@@ -157,7 +157,7 @@ async def predict(
 ):
     authorize_user(credentials)
     predictions = make_predictions(
-        users_id, "/app/models/model.pkl", "/app/src/data/data/processed/user_matrix.csv"
+        users_id, "./app/models/model.pkl", "./app/src/data/data/processed/user_matrix.csv"
     )
     return {"predictions": predictions.tolist()}
 

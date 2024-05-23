@@ -1,3 +1,8 @@
+# Before testing, check if:
+# Pytest is installed 
+# Check filepath of movie_matrix.csv and model.pkl in the server.py 
+# Make sure your local repository has all the raw and processed data incl. movie_matrix.csv
+
 import pytest
 from fastapi.testclient import TestClient
 from app.server import app
